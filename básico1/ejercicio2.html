@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2</title>
+</head>
+<body>
+    
+    <h1>2. Ejercicio 2 JS: Estructuras de control</h1>
+
+    <h2>Condicionales (if, else if, else):</h2>
+
+    <p>2.1. Escribe un programa que verifique si un número es positivo, negativo o cero e imprima el resultado.</p>
+
+    <script>
+        let numero = 5; 
+        if (numero < 0) {
+            console.log("El número " + numero + " es negativo");
+        } else if (numero > 0) {
+            console.log("El número " + numero + " es positivo");
+        } else {
+            console.log("El número " + numero + " es cero");
+        }
+    </script>
+
+    <p>2.2. Crea un programa que determine si una persona es menor de edad, adulta o anciana según su edad.</p>
+
+    <p id="comprobacionEdad"></p>
+
+    <script>
+        let edad = 74;
+        if (edad > 0 && edad < 18) {
+            console.log("Eres menor de edad");
+        } else if (edad >= 18 && edad <= 70) {
+            console.log("Eres un adulto");
+        } else {
+            console.log("Eres un anciano");
+        }
+    </script>
+
+    <h2>Bucles (for, while, do-while):</h2>
+
+    <p>2.3. Utiliza un bucle for para imprimir los valores de i desde 0 hasta 4.</p>
+
+    <script>
+        for (let i = 0; i <= 4; i++) {
+            console.log(i);
+        }
+    </script>
+
+    <p>2.4. Utiliza un bucle while para imprimir los valores del contador desde 0 hasta 4.</p>
+
+    <script>
+        let contador = 0;
+        while (contador <= 4) {
+            console.log(contador);
+            contador++;
+        }
+    </script>
+
+    <p>2.5. Emplea un bucle do-while para imprimir los valores de x desde 0 hasta 4.</p>
+
+    <script>
+        let x = 0;
+        do {
+            console.log(x);
+            x++;
+        } while (x < 5);
+    </script>
+
+    <h2>Interrupción de bucles (break, continue):</h2>
+
+    <p>2.6. Crea un bucle for que se detenga cuando i sea igual a 3 usando la instrucción break.</p>
+
+    <script>
+
+    </script>
+
+    <p>2.7. Implementa un bucle for que salte la iteración cuando j sea igual a 2 usando la instrucción continue.</p>
+
+    <script>
+        for (let j = 0; j <= 4; j++) {
+            if (j === 2) {
+                continue;
+            }
+            console.log(j);
+        }
+    </script>
+
+    <h2>Condicional (switch):</h2>
+
+    <p>
+    2.8. Convierte un número del 1 al 12 en el nombre del mes correspondiente. El programa debe solicitar al usuario que ingrese un número del 1 al 12 y luego mostrar el nombre del mes asociado.
+    Ejemplo:
+        <ul>
+            <li>Ingresa un número del 1 al 12 para saber el mes correspondiente: 9</li>
+            <li>El mes correspondiente al número 9 es: Septiembre</li>
+        </ul>
+    </p>
+
+    <script>
+        let numeroMes = parseInt(prompt("Ingresa un número del 1 al 12 para saber el mes correspondiente: "));
+
+        const meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+
+        if (numeroMes >= 1 && numeroMes <= 12) {
+            console.log("El mes correspondiente al número " + numeroMes + " es: " + meses[numeroMes - 1]);
+        } else {
+            console.log("Número inválido. No corresponde con ningún mes.");
+        }
+    </script>
+
+</body>
+</html>

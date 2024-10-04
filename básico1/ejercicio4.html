@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 4</title>
+</head>
+<body>
+    
+    <h1>4. Ejercicio 4 JS: Arrays</h1>
+    <p>4.1. Crea un programa que solicite al usuario ingresar una lista de números y luego encuentre el número más grande en esa lista.</p>
+    <ul>
+        <li>Solicita al usuario que ingrese la cantidad de números que quiere introducir.</li>
+        <li>Solicita al usuario que introduzca cada número uno por uno.</li>
+        <li>Almacena estos números en un array.</li>
+        <li>Escribe una función llamada findLargestNumber que tome un array de números como entrada y devuelva el número más grande en el array.</li>
+        <li>Dentro de la función, itera a través del array usando un bucle for para encontrar el número más grande.</li>
+        <li>Muestra el número más grande encontrado al usuario.</li>
+    </ul>
+    <p>Asegúrate de que el programa utilice arrays para almacenar los números y la función para encontrar el número más grande.</p>
+    <p>Ejemplo:</p>
+    <ul>
+        <li>Ingresa la cantidad de números: 5</li>
+        <li>Ingresa el número 1: 10</li>
+        <li>Ingresa el número 2: 25</li>
+        <li>Ingresa el número 3: 7</li>
+        <li>Ingresa el número 4: 18</li>
+        <li>Ingresa el número 5: 12</li>
+        <li>El número más grande es: 25</li>
+    </ul>
+
+    <script>
+        function solicitarNumeros() {
+            let cantidad = parseInt(prompt("Ingresa la cantidad de números:"));
+            let numeros = [];
+
+            for (let i = 0; i < cantidad; i++) {
+                let numero = parseFloat(prompt(`Ingresa el número ${i + 1}:`));
+                numeros.push(numero); 
+            }
+
+            return numeros;
+        }
+
+        function findLargestNumber(numeros) {
+            let maximo = numeros[0]; 
+
+            for (let i = 1; i < numeros.length; i++) {
+                if (numeros[i] > maximo) {
+                    maximo = numeros[i]; 
+                }
+            }
+
+            return maximo;
+        }
+
+        let numeros = solicitarNumeros();
+        let numeroMayor = findLargestNumber(numeros);
+        console.log("El número más grande es: " + numeroMayor);
+    </script>
+
+</body>
+</html>

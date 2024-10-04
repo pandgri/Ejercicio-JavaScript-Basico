@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 3</title>
+</head>
+<body>
+    
+    <h2>3. Ejercicio 3 JS: Funciones</h2>
+
+    <p>3.1. Escribe un programa que solicite al usuario el radio de un círculo y luego calcule y muestre el área y el perímetro del círculo.</p>
+    <ul>
+        <li>Solicita al usuario que ingrese el radio del círculo.</li>
+        <li>Define dos funciones: una para calcular el área del círculo y otra para calcular el perímetro del círculo.</li>
+        <li>
+        Usa las fórmulas matemáticas apropiadas dentro de estas funciones para calcular el área (π * radio^2) y el perímetro (2 * π * radio) del círculo.
+        </li>
+        <li>Llama a estas funciones con el radio proporcionado por el usuario como argumento.</li>
+        <li>Muestra los resultados del área y el perímetro al usuario.</li>
+    </ul>
+
+    <script>
+        let radio = parseFloat(prompt("Ingresa el radio del círculo: "));
+
+        function areaCirculo(radio) {
+            return Math.PI * Math.pow(radio, 2);
+        }
+
+        function perimetroCirculo(radio) {
+            return 2 * Math.PI * radio;
+        }
+
+        let area = areaCirculo(radio);
+        let perimetro = perimetroCirculo(radio);
+        console.log("El área del círculo: " + area);
+        console.log("El perímetro del círculo: " + perimetro);
+
+    </script>
+
+    <p>
+    3.2. Escribe una función llamada calculatePower que tome dos
+    parámetros: base y exponent. Esta función debe calcular y devolver el resultado de elevar la base al exponente.
+    </p>
+    <p>Ejemplo:</p>
+    <p>// Llamada a la función</p>
+    <p>let result = calculatePower(2, 3);</p>
+    <p>console.log(result); // Resultado esperado: 8</p>
+
+    <script>
+        function calculatePower(base, exponent) {
+            return Math.pow(base, exponent); 
+        }
+
+        let resultado = calculatePower(5, 2);
+        console.log("Resultado esperado: " + resultado);
+    </script>
+
+</body>
+</html>
