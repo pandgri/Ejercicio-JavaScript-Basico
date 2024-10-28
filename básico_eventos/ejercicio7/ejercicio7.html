@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Colores bloques</title>
+    <style>
+      div {
+        width: 100px;
+        height: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="c1" style="background: red"></div>
+    <div id="c2" style="background: white"></div>
+    <div id="c3" style="background: blue"></div>
+
+    <script>
+        function cambiarColor(event) {
+            let bloqueBlanco = document.getElementById("c2");
+            let bloqueActual = event.relatedTarget;
+
+            if (bloqueActual.id === "c1") {
+                bloqueBlanco.style.backgroundColor = "red";
+            } else if (bloqueActual.id === "c3") {
+                bloqueBlanco.style.backgroundColor = "blue";
+            } else {
+                bloqueBlanco.style.backgroundColor = "white";
+            }   
+        }
+
+        document.getElementById("c2").addEventListener("mouseenter", cambiarColor);
+    </script>
+
+  </body>
+</html>

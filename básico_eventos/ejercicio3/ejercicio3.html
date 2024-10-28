@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario</title>
+  </head>
+  <body>
+    <form>
+      <label for="precio">Precio: <input id="precio" type="number" style="background-color: lightgoldenrodyellow;"/></label> <br> <br>
+      <label for="cantidad">Cantidad: <input id="cantidad" type="number" style="background-color: lightgoldenrodyellow;"/></label> <br> <br>
+      <input type="button" id="enviar" value="Calcular" style="background-color: lightgoldenrodyellow; color: lightcoral; font-weight: bold;"/> <br> <br>
+      <label for="total">Total: <input id="total" readonly style="background-color: lightcoral;" /></label>
+    </form>
+  </body>
+  <script>
+
+        document.getElementById("enviar").addEventListener("click", function () {
+            let precio = parseFloat(document.getElementById("precio").value)
+            let cantidad = parseFloat(document.getElementById("cantidad").value)
+            let total = precio * cantidad;
+            document.getElementById("total").value = total;
+        })
+    
+  </script>
+</html>

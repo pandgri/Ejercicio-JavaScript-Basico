@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>No dígitos input</title>
+</head>
+<body>
+    
+    <form>
+        <label>No se aceptan dígitos</label>
+        <input type="text" id="letras" onkeydown="noAceptaNumeros(event)">
+    </form>
+
+    <script>
+        function noAceptaNumeros(event) {
+            let teclas = event.key;
+
+            if (teclas === "0" || teclas === "1" || teclas === "2" || teclas === "3" || teclas === "4" || teclas === "5" || teclas === "6" || teclas === "7" || teclas === "8" || teclas === "9") {
+                event.preventDefault();
+            } 
+        }
+
+    </script>
+
+</body>
+</html>

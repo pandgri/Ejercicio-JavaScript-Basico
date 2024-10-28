@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scroll Botón</title>
+    <style>
+        #boton{
+            position: absolute; 
+            display: none;
+            background-color: aqua;
+            padding: 20px;
+            border-radius: 15%;
+        }
+
+        body{
+            height: 200vh
+        }
+    </style>
+</head>
+<body>
+    
+    Primera linea o cabecera
+    <div id="boton">Boton</div>
+
+    <script>
+        function fondoPantalla(event) {
+            let alto = window.innerHeight;
+            let desplazamiento = window.scrollY;
+            let boton = document.getElementById("boton");
+
+            if (desplazamiento > alto) {
+                boton.style.display = "block";
+                boton.style.position = "fixed";
+            } else {
+                boton.style.display = "none";
+            }
+        }
+
+        window.addEventListener("scroll", fondoPantalla);
+    </script>
+
+</body>
+</html>

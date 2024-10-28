@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colores</title>
+    <script>
+        function cambiarColor() {
+            document.getElementById("efecto").style.backgroundColor = "lightgreen";
+        }
+        function iniciarColor() {
+            document.getElementById("efecto").style.backgroundColor = "rgb(255, 201, 24)";
+        }
+    </script>
+</head>
+<body>
+    <div onmouseover="cambiarColor()" onmouseout="iniciarColor()" style="background-color: rgb(255, 201, 24); padding: 10px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 7px rgb(141, 80, 11);
+    text-align: center;
+    max-width: 150px;
+    margin: 0 auto;
+    margin-top: 20px;
+    cursor: pointer;
+    margin-bottom: 40px;">
+        <p>"Pasa por aqui"</p>
+    </div>
+    <div id="efecto" style="background-color: rgb(255, 201, 24);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 7px rgb(141, 80, 11);
+    text-align: center;
+    max-width: 150px;
+    margin: 0 auto;
+    margin-top: 20px;">
+        <p>"Efectos del movimiento"</p>
+    </div>
+</body>
+</html>
