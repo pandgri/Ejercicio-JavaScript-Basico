@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicio de atención al cliente</title>
+</head>
+<body>
+    
+    <script>
+
+        function servicioCliente(semana) {
+            let servicio = [
+                ["lunes", "María"],
+                ["martes", "Luis"], 
+                ["miércoles", "Antonia"],
+                ["jueves", "Pedro"], 
+                ["viernes", "Marisa"]
+            ]
+
+            semana = semana.toLowerCase();
+
+            for (let i = 0; i < servicio.length; i++) {
+                if (servicio[i][0] === semana) {
+                    return console.log("Este día se encarga " + servicio[i][1]);
+                    break;
+                } 
+            }
+            return console.log("No hay servicio el '" + semana + "'");
+
+        }
+
+        servicioCliente("Miércoles");
+
+    </script>
+
+</body>
+</html>

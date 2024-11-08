@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda</title>
+</head>
+<body>
+    
+    <script>
+
+        function devolverPrecio(nombre) {
+            let precios = [
+                ["monitor", "200€"],
+                ["teclado", "20€"], 
+                ["ratón", "10€"]
+            ];
+
+            nombre = nombre.toLowerCase();
+
+            for (let i = 0; i < precios.length; i++) {
+                if (precios[i][0] === nombre) {
+                    return console.log("El " + precios[i][0] + " tiene el precio de " + precios[i][1]);
+                }
+            }
+            return console.log("El '" + nombre + "' no se encuentra en la tienda.");
+        }
+
+        devolverPrecio("monitor");
+
+    </script>
+
+</body>
+</html>

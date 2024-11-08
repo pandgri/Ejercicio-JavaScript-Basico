@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vocales</title>
+</head>
+<body>
+    
+    <script>
+
+        function esVocal(letra) {
+            let vocales = ["a", "e", "i", "o", "u"];
+            for (let i = 0; i < vocales.length; i++) {
+                if (vocales[i] === letra.toLowerCase()) {
+                    return console.log(true);
+                }
+            }
+            return console.log(false);
+        }
+
+        esVocal("z");
+
+    </script>
+
+</body>
+</html>

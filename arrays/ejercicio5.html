@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valor más pequeño de array</title>
+</head>
+<body>
+    
+    <script>
+
+        function valorPequeño(matriz, letra) {
+            let indice = 0;
+            let valor = matriz[0];
+
+            for (let i = 0; i < matriz.length; i++) {
+                if (matriz[i] < valor) {
+                    valor = matriz[i];
+                    indice = i;
+                }
+            }
+
+            if (letra === "v") {
+                console.log("[" + matriz + "] el valor más pequeño es: " + valor);
+            } else if (letra === "i") {
+                console.log("[" + matriz + "] el valor más pequeño es: " + indice);
+            }
+
+        }
+
+        valorPequeño([4,5,7], "i");
+
+    </script>
+
+</body>
+</html>

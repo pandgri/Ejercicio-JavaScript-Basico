@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Números pares e impares</title>
+</head>
+<body>
+    
+    <script>
+
+        let numeros = [];
+        let pares = 0;
+        let impares = 0;
+        let indiceArray = 0;
+
+        while (true) {
+            let frase = prompt("Introduzca números: ");
+            let numero = parseInt(frase);
+
+            if (isNaN(numero)) {
+                alert("Tienes que introducir números.");
+                break;
+            } else if (numero === 0) {
+                break;
+            } else {
+                numeros[indiceArray] = numero;
+                indiceArray++;
+            }
+            }
+
+        
+
+        for (let i = 0; i < numeros.length; i++) {
+            if (numeros[i] % 2 === 0) {
+                pares++;
+            } else {
+                impares++;
+            }
+        }
+
+        console.log("El array de entrada es [" + numeros + "] y hay " + pares + " números pares y " + impares + " números impares.");
+
+    </script>
+
+</body>
+</html>

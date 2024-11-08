@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Días de la semana</title>
+  </head>
+  <body>
+    <script>
+      let semana = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+
+      let numero = parseInt(prompt("Introduzca un número (0-6): "));
+
+      if (numero >= 0 && numero <= 6) {
+        console.log(semana[numero]);
+      } else {
+        console.log("El número debe ser entre 0 y 6.");
+      }
+    </script>
+  </body>
+</html>
