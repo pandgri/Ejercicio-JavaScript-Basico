@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <script>
+        // Función para validar el formulario
+        function valida(formulario) {
+            // Expresiones regulares para el campo 'correo' y 'contraseña', y elementos del formulario
+            let nombre = document.getElementById("nombre"); 
+            let correo = document.getElementById("correo");
+            let expresion_correo = /^[^@\s]+@[^@\s]+\.[^@\s]+$/; // Expresión regular para validar direcciones de correo electrónico
+            let contraseña = document.getElementById("contraseña");
+            let expresion_contraseña = /^(?=.*\d).{8,}$/; // Expresión regular para validar que la contraseña tenga al menos 1 dígito y al menos 8 caracteres
+            let contraseña_repetida = document.getElementById("contraseña-repetida");
+            let operacion = document.getElementById("operacion");
+            let condiciones = document.getElementById("condiciones");
+
+            // Validación para que el campo 'nombre' no este vacío
+            if (nombre.value.trim() === "") {
+                document.getElementById("nombreError").innerHTML = "El nombre no puede estar vacío."; // Se escribe el error en el elemento con id 'nombreError'
+                nombre.focus(); // Se pone el foco en el campo 'nombre'
+                nombre.select(); // Se selecciona todo el campo 'nombre'
+                return false; // No se envía el formulario
+            } else {
+                document.getElementById("nombreError").innerHTML = ""; // No se escribe ningún error
+            }
+            
+            // Validación para que el campo 'correo' sea correcto a la hora de hacer el test con la expresión regular
+            if (expresion_correo.test(correo.value) == false) {
+                document.getElementById("correoError").innerHTML = "El correo electrónico no es válido."; // Se escribe el error en el elemento con id 'correoError'
+                correo.focus(); // Se pone el foco en el campo 'correo'
+                correo.select(); // Se selecciona todo el campo 'correo'
+                return false; // No se envía el formulario
+            } else {
+                document.getElementById("correoError").innerHTML = ""; // No se escribe ningún error
+            }
+
+            // Validación para que el campo 'contraseña' sea correcto a la hora de hacer el test con la expresión regular
+            if (expresion_contraseña.test(contraseña.value) == false) {
+                document.getElementById("contraseñaError").innerHTML = "La contraseña debe tener al menos 1 dígito y 8 caracteres."; // Se escribe el error en el elemento con id 'contraseñaError'
+                contraseña.focus(); // Se pone el foco en el campo 'contraseña'
+                contraseña.select(); // Se selecciona todo el campo 'contraseña'
+                return false; // No se envía el formulario
+            } else {
+                document.getElementById("contraseñaError").innerHTML = ""; // No se escribe ningún error
+            }
+
+            // Validación para que el valor del campo 'contraseña_repetida' sea igual al valor del campo 'contraseña'
+            if (contraseña_repetida.value !== contraseña.value) {
+                document.getElementById("contraseñaRepetidaError").innerHTML = "La contraseña no es la misma";  // Se escribe el error en el elemento con id 'contraseñaRepetidaError'
+                contraseña_repetida.focus(); // Se pone el foco en el campo 'contraseña_repetida'
+                contraseña_repetida.select(); // Se selecciona todo el campo 'contraseña_repetida'
+                return false; // No se envía el formulario
+            } else if (contraseña_repetida.value === contraseña.value) {
+                document.getElementById("contraseñaRepetidaError").innerHTML = ""; // No se escribe ningún error
+            }
+
+            // Validación para que el valor del campo 'operacion' sea igual a el valor de la respuesta (variable que almacena la respuesta de la operación matemática)
+            if (parseInt(operacion.value) !== respuesta) {
+                document.getElementById("operacionError").innerHTML = "La respuesta no es correcta"; // Se escribe el error en el elemento con id 'operacionError'
+                operacion.focus(); // Se pone el foco en el campo 'operacion'
+                operacion.select(); // Se selecciona todo el campo 'operacion'
+                return false; // No se envía el formulario
+            } else {
+                document.getElementById("operacionError").innerHTML = ""; // No se escribe ningún error
+            }
+
+            // Validación para el checkbox de 'aceptar las condiciones' esté seleccionado
+            if (!condiciones.checked) {
+                document.getElementById("condicionesError").innerHTML = "Debe aceptar las condiciones."; // Se escribe el error en el elemento con id 'condicionesError'
+            } else {
+                document.getElementById("condicionesError").innerHTML = ""; // No se escribe ningún error
+            }
+
+            // Se envía el formulario
+            return true;
+
+        }
+
+        // Variable que almacena la respuesta de la operación matemática
+        let respuesta;
+
+        // Al cargar la página se genera la función que genera la pregunta y la respuesta de la operación matemática
+        window.onload = function() {
+            let num1 = Math.floor(Math.random() * 10); // Número aleatorio entre el 0 y el 9
+            let num2 = Math.floor(Math.random() * 10); // Número aleatorio entre el 0 y el 9
+            respuesta = num1 + num2; // Variable respuesta que se creó anteriormente se almacena la suma de los dos números que se han generado aleatoriamente
+            document.getElementById("pregunta").innerHTML = num1+ " + " +num2; // Se escribe la operación matemática en el elemento con id 'pregunta'
+        }
+
+        // Función que habilita o deshabilita el botón de envío del formulario dependiendo si está seleccionado el checkbox de las condiciones
+        function crearCuenta() {
+        let condiciones = document.getElementById("condiciones"); // Elemento del formulario 'Checbox de acpetar las condiciones'
+        let submit = document.getElementById("submit"); // Elemento del formulario 'Botón de envío del formulario'
+        submit.disabled = !condiciones.checked; // si está seleccionado el checkbox de las condiciones el botón de envío de formulario de habilita, en caso contrario se deshabilita
+        }
+
+    </script>
+</head>
+<body>
+    <!-- Formulario -->
+    <form id="comprobacion" name="formulario" method="post" onsubmit="return valida(this)">
+
+        <!-- Campo para el nombre -->
+        <label for="nombre">Nombre: </label>
+        <input type="text" name="nombre" id="nombre">
+
+        <!-- Mensaje de error para el campo 'nombre'-->
+        <p id="nombreError" style="color: red;"></p>
+
+        <!-- Campo para el correo electrónico -->
+        <label for="correo">Correo electrónico: </label>
+        <input type="text" name="correo" id="correo">
+
+        <!-- Mensaje de error para el campo 'correo'-->
+        <p id="correoError" style="color: red;"></p>
+
+        <!-- Campo para la contraseña -->
+        <label for="contraseña">Contraseña: </label>
+        <input type="password" name="contraseña" id="contraseña">
+
+        <!-- Mensaje de error para el campo 'contraseña'-->
+        <p id="contraseñaError" style="color: red;"></p>
+
+        <!-- Campo para la contraseña repetida -->
+        <label for="contraseña-repetida">Contraseña repetida: </label>
+        <input type="password" name="contraseña-repetida" id="contraseña-repetida">
+
+        <!-- Mensaje de error para el campo 'contraseña repetida'-->
+        <p id="contraseñaRepetidaError" style="color: red;"></p>
+
+        <!-- Campo para la operación matemática -->
+        <label for="operacion">Operación matemática:  <span id="pregunta"></span> </label>
+        <input type="text" name="operacion" id="operacion">
+
+        <!-- Mensaje de error para el campo 'operación matemática'-->
+        <p id="operacionError" style="color: red;"></p>
+
+        <!-- Checkbox para el acepto de condiciones -->
+        <label for="condiciones">Acepto las condiciones</label>
+        <input type="checkbox" name="condiciones" id="condiciones" onchange="crearCuenta()">
+
+        <!-- Mensaje de error para el checkbox 'acepto de condiones'-->
+        <p id="condicionesError" style="color: red;"></p>
+
+        <!-- Botón de envío del formulario -->
+        <button id="submit" type="submit" disabled>Crear Cuenta</button>
+
+    </form>
+
+</body>
+</html>
+

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de personas de la provincia de Cádiz</title>
+    <script>
+        // Función para validar el formulario
+        function valida(formulario) {
+            // Expresiones regulares para el campo 'nombre' y 'contraseña', y elementos del formulario
+            let nombre = document.getElementById("nombre");
+            let expresion_nombre = /^[^\s]{8,}$/; // Expresión regular para validar que el nombre no tenga espacios en blanco y al menos debe tener 8 caracteres
+            let contraseña = document.getElementById("contraseña");
+            let expresion_contraseña = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,10}$/; // Expresión regular para validar que la contraseña tenga al menos una letra mayúscula, un número, entre 6 y 10 caracteres 
+            let poblacion = document.getElementById("poblacion"); 
+
+            // Validación para que el campo 'nombre' sea correcto a la hora de hacer el test con la expresión regular
+            if (expresion_nombre.test(nombre.value) == false) {
+                document.getElementById("nombreError").innerHTML = "El dato 'Nombre de usuario' debe 'Tener, al menos, 8 caracteres (no se permiten espacios en blanco)'."; // Se escribe el error en el elemento con id 'nombreError'
+                nombre.focus(); // Se pone el foco en el campo 'nombre'
+                nombre.select(); // Se selecciona todo el campo 'nombre'
+                return false; // No se envía el formulario
+            } else {
+                document.getElementById("nombreError").innerHTML = ""; // No se escribe ningún error
+            }
+
+            // Validación para que el campo 'contraseña' sea correcto a la hora de hacer el test con la expresión regular
+            if (expresion_contraseña.test(contraseña.value) == false) {
+                document.getElementById("contraseñaError").innerHTML = "El dato 'Contraseña' debe 'Tener de entre 6 y 10 caracteres alfanuméricos y contar con al menos un dígito y una letra mayúscula'."; // Se escribe el error en el elemento con id 'contraseñaError'
+                contraseña.focus(); // Se pone el foco en el campo 'contraseña'
+                contraseña.select(); // Se selecciona todo el campo 'contraseña'
+                return false; // No se envía el formulario
+            } else {
+                document.getElementById("contraseñaError").innerHTML = ""; // No se escribe ningún error
+            }
+            
+            // Validación para que el campo 'poblacion' no este vacío
+            if (poblacion.value === "") {
+                document.getElementById("poblacionError").innerHTML = "El dato 'Población' debe 'Al menos una de ellas debe estar seleccionada'"; // Se escribe el error en el elemento con id 'poblacionError'
+                poblacion.focus(); // Se pone el foco en el campo 'poblacion'
+                return false; // No se envía el formulario
+            } else {
+                document.getElementById("poblacionError").innerHTML = ""; // No se escribe ningún error
+            }
+
+            // Se envía el formulario
+            return true;
+
+        }
+
+    </script>
+</head>
+<body>
+    <!-- Formulario -->
+    <form action="grabar.php" method="post" onsubmit="return valida(this)">
+
+        <!-- Campo para el nombre -->
+        <label for="nombre">Nombre de usuario: </label>
+        <input type="text" name="nombre" id="nombre">
+
+        <!-- Mensaje de error para el campo 'nombre'-->
+        <p id="nombreError" style="color: red;"></p>
+
+        <!-- Campo para la contraseña -->
+        <label for="contraseña">Contraseña: </label>
+        <input type="password" name="contraseña" id="contraseña">
+
+        <!-- Mensaje de error para el campo 'contraseña'-->
+        <p id="contraseñaError" style="color: red;"></p>
+
+        <!-- Lista de opciones para la selección de población -->
+        <label for="poblacion">Población: </label>
+        <select id="poblacion" name="poblacion">
+            <!-- Opciones -->
+            <option value="">-- Seleccione --</option>
+            <option value="Alcalá de los Gazules">Alcalá de los Gazules</option>
+            <option value="Alcalá del Valle">Alcalá del Valle</option>
+            <option value="Algeciras">Algeciras</option>
+            <option value="Algodonales">Algodonales</option>
+            <option value="Arcos de la Frontera">Arcos de la Frontera</option>
+            <option value="Barbate">Barbate</option>
+            <option value="Benaocaz">Benaocaz</option>
+            <option value="Benalup-Casas Viejas">Benalup-Casas Viejas</option>
+            <option value="Bornos">Bornos</option>
+            <option value="Cádiz">Cádiz</option>
+            <option value="Chiclana de la Frontera">Chiclana de la Frontera</option>
+            <option value="Conil de la Frontera">Conil de la Frontera</option>
+            <option value="Cortes de la Frontera">Cortes de la Frontera</option>
+            <option value="Espera">Espera</option>
+            <option value="Facinas">Facinas</option>
+            <option value="El Bosque">El Bosque</option>
+            <option value="El Puerto de Santa María">El Puerto de Santa María</option>
+            <option value="El Rocío">El Rocío</option>
+            <option value="Los Barrios">Los Barrios</option>
+            <option value="La Línea de la Concepción">La Línea de la Concepción</option>
+            <option value="La Janda">La Janda</option>
+            <option value="La Victoria">La Victoria</option>
+            <option value="Las Cabezas de San Juan">Las Cabezas de San Juan</option>
+            <option value="Las Lagunas">Las Lagunas</option>
+            <option value="Jerez de la Frontera">Jerez de la Frontera</option>
+            <option value="Medina Sidonia">Medina Sidonia</option>
+            <option value="Puerto Real">Puerto Real</option>
+            <option value="Rota">Rota</option>
+            <option value="San Fernando">San Fernando</option>
+            <option value="Sanlúcar de Barrameda">Sanlúcar de Barrameda</option>
+            <option value="Tarifa">Tarifa</option>
+            <option value="Ubrique">Ubrique</option>
+            <option value="Vejer de la Frontera">Vejer de la Frontera</option>
+            <option value="Villamartín">Villamartín</option>
+            <option value="Villanueva del Río">Villanueva del Río</option>
+            <option value="Zahara de la Sierra">Zahara de la Sierra</option>
+            <option value="Zahara de los Atunes">Zahara de los Atunes</option>
+            <option value="Jimena de la Frontera">Jimena de la Frontera</option>
+            <option value="Benalup">Benalup</option>
+        </select>
+
+        <!-- Mensaje de error para la lista de selección de población -->
+        <p id="poblacionError" style="color: red;"></p>
+
+        <!-- Botón de envío del formulario -->
+        <button id="submit" type="submit">Enviar</button>
+
+    </form>
+
+</body>
+</html>
