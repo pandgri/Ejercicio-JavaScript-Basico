@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <style>
+        h1 {
+            margin-left: 10px;
+        }
+
+        fieldset {
+            border: none;
+        }
+
+        legend {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        #submit {
+            margin-left: 20px;
+        }
+
+        #error {
+            color: red;
+        }
+
+    </style>
+    <script>
+        // Función para validar el formulario
+        function valida(formulario) {
+            // Expresiones regulares para el campo 'contraseña', y elementos del formulario
+            let contraseña = document.getElementById("contraseña");
+            let expresion_contraseña = /^[A-Z][A-Za-z0-9]{5,}.*\d.*$/; // Expresión regular para validar que la contraseña debe empezar por una letra mayúscula, tener un mínimo de 6 caracteres y contener, al menos, un dígito
+            let contraseña_repetida = document.getElementById("contraseña_repetida");
+            let indicio = document.getElementById("indicio");
+
+            // Validación para que el campo 'contraseña' sea correcto a la hora de hacer el test con la expresión regular
+            if (expresion_contraseña.test(contraseña.value) === false) {
+                document.getElementById("contraseñaError").innerHTML = "La contraseña debe empezar por una letra mayúscula, tener un mínimo de 6 caracteres y contener, al menos, un dígito"; // Se escribe el error en el elemento con id 'contraseñaError'
+                contraseña.focus(); // Se pone el foco en el campo 'contraseña'
+                contraseña.select(); // Se selecciona todo el campo 'contraseña'
+                return false; // No se envía el formulario
+            } else {
+                document.getElementById("contraseñaError").innerHTML = ""; // No se escribe ningún error
+            }
+
+            // Validación para que el valor del campo 'contraseña_repetida' sea igual al valor del campo 'contraseña'
+            if (contraseña_repetida.value !== contraseña.value) {
+                document.getElementById("contraseñaRepetidaError").innerHTML = "Las contraseñas escritas no coinciden. Vuelve a intentarlo"; // Se escribe el error en el elemento con id 'contraseñaRepetidaError'
+                contraseña.focus(); // Se pone el foco en el campo 'contraseña'
+                contraseña.select(); // Se selecciona todo el campo 'contraseña'
+                return false; // No se envía el formulario
+            } else {
+                document.getElementById("contraseñaRepetidaError").innerHTML = ""; // No se escribe ningún error
+            }
+
+            // Validación para que el valor del campo 'indicio' no sea igual al valor del campo 'contraseña'
+            if (indicio.value === contraseña.value) {
+                document.getElementById("indicioError").innerHTML = "El indicio de contraseña no puede contener la contraseña"; // Se escribe el error en el elemento con id 'indicioError'
+                indicio.focus(); // Se pone el foco en el campo 'indicio'
+                indicio.select(); // Se selecciona todo el campo 'indicio'
+                return false; // No se envía el formulario
+            } else {
+                document.getElementById("indicioError").innerHTML = ""; // No se escribe ningún error
+            }
+
+            // Se envía el formulario
+            return true;
+
+        }
+    </script>
+</head>
+<body>
+  
+    <!-- Formulario -->
+    <form id="formulario" action="cambia_cuenta.php" method="post" onsubmit="return valida(this)">
+        <h1>Configuración de usuario</h1>
+
+        
+        <fieldset>
+            <legend>Inicio de sesión</legend>
+
+            <!-- Lista de opciones para la selección de inicio de sesión -->
+            <label for="inicio">¿Cuándo quieres que Windows te vuelva a pedir que inicies sesión?</label>
+            <select id="inicio" name="inicio">
+                <!-- Opciones -->
+                <option value="suspension">Cuando el PC se activa tras haber estado en suspensión</option>
+                <option value="nunca">Nunca</option>
+            </select>
+        </fieldset>
+
+        <fieldset>
+            <legend>Contraseña</legend>
+
+            <!-- Campo para la contraseña -->
+            <label for="contraseña">Nueva contraseña</label>
+            <input type="password" id="contraseña" name="contraseña">
+
+            <!-- Mensaje de error para el campo 'contraseña'-->
+            <span id="contraseñaError" style="color: red;"></span>
+            <br>
+
+            <!-- Campo para la contraseña repetida -->
+            <label for="contraseña_repetida">Vuelve a escribir la contraseña</label>
+            <input type="password" id="contraseña_repetida" name="contraseña_repetida">
+
+            <!-- Mensaje de error para el campo 'contraseña_repetida'-->
+            <span id="contraseñaRepetidaError" style="color: red;"></span>
+            <br>
+
+            <!-- Área de texto para el indicio de contraseña -->
+            <label for="indicio">Indicio de contraseña</label>
+            <textarea name="indicio" id="indicio" cols="17" rows="2"></textarea>
+
+            <!-- Mensaje de error para el área de texto 'indicio' -->
+            <span id="indicioError" style="color: red;"></span>
+        </fieldset>
+
+        <fieldset>
+            <legend>Privacidad</legend>
+
+            <!-- Checkbox para la privacidad -->
+            <label>
+                <input type="checkbox" id="privacidad" name="privacidad">
+                Mostrar detalles de la cuenta en la pantalla de inicio de sesión
+            </label>
+        </fieldset>
+
+        <!-- Botón de envío del formulario -->
+        <button id="submit" type="submit">Aceptar</button>
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cifrado César</title>
+    <style>
+        #rotado {
+            width: 40px;
+        }
+    </style>
+    <script>
+
+        function descifrar() {
+            // Diccionario de alfabetos ("castellano e inglés")
+            let alfabetos = {
+                "castellano": "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ", 
+                "ingles": "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            };
+
+            // Obtener los valores de los campos
+            let alfabeto = document.getElementById("alfabeto").value;
+            let cifrado = document.getElementById("cifrado").value;
+            let rotado = document.getElementById("rotado").value;
+
+            // Obtener el alfabeto que ha elegido el usuario, a través, del diccionario 'alfabetos'
+            let alfabeto_elegido = alfabetos[alfabeto];
+
+            // Poner el atributo máximo al input del 'nivel de rotado'
+            document.getElementById("rotado").max = alfabeto_elegido.length - 1;
+
+            // Variable donde se va ha almacenar el texto descifrado
+            let descifrado = "";
+
+            // Obtener cada caracter del textarea donde se introduce el texto que se quiere descifrar
+            for (let i = 0; i < cifrado.length; i++) {
+                let caracter = cifrado[i]; // Variable que almacena cada caracter del texto que está cifrado
+                let caracter_descifrado = alfabeto_elegido.indexOf(caracter) // Variable que almacena la posición en la que se encuentra el caracter que se encuentra en el texto cifrado
+
+                // Comprueba si el caracter se encuentra en el valor del alfabeto seleccionado 'lo busca en el valor del diccionario'
+                if (caracter_descifrado === -1) {
+                    descifrado += caracter; // Escribe el caracter aunque no se encuentre en el alfabeto
+                } else { 
+                    let letra_oficial = (caracter_descifrado - rotado + alfabeto_elegido.length) % alfabeto_elegido.length; // Variable que almacena el índice del caracter del alfabeto que va a servir para descifrar
+                    descifrado += alfabeto_elegido[letra_oficial]; // Variable que almacena todos los caracteres del texto descifrado
+                }
+                
+            }
+
+            // Texto descifrado
+            document.getElementById("texto").innerHTML = descifrado;
+
+        }
+
+    </script>
+</head>
+<body>
+
+    <h1>Cifrado César</h1>
+
+    <h2>- Descifrar -</h2>
+
+    <!-- Lista de opciones para la selección de alfabeto -->
+    <label for="alfabeto">Alfabeto</label>
+    <select name="alfabeto" id="alfabeto" onchange="descifrar()">
+        <!-- Opciones -->
+        <option value="castellano" selected>Castellano</option>
+        <option value="ingles">Inglés</option>
+    </select><br><br>
+
+    <!-- Área de texto para el texto cifrado -->
+    <label for="cifrado">Texto a descifrar</label>
+    <textarea name="cifrado" id="cifrado" cols="40" rows="3"></textarea><br><br>
+
+    <!-- Campo para el rotado -->
+    <label for="rotado">Nivel de Rotado</label>
+    <input type="number" name="rotado" id="rotado" min="0"><br><br>
+
+    <!-- Botón para descifrar el texto -->
+    <button onclick="descifrar()">Descifrar</button><br><br>
+
+     <!-- Texto descifrado -->
+    <div id="texto" style="color: red;"></div>
+
+</body>
+</html>
