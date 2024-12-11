@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <script>
+        // Función para validar el formulario
+        function validacion(event) {
+            event.preventDefault(); // Evento para que no se envie el formulario por defecto
+
+            let formulario = document.getElementById("formulario");
+            let errores_validacion = []; // Lista para almacenar todos los errores de validación
+            let error; // Variable para almacenar el primer error
+
+            // Expresiones regulares para el campo 'direccion', 'telefono', 'correo' y 'contraseña', y elementos del formulario
+            let nombre = document.getElementById("nombre");
+            let primer_apellido = document.getElementById("primer_apellido");
+            let segundo_apellido = document.getElementById("segundo_apellido");
+            let direccion = document.getElementById("direccion");
+            let expresion_direccion = /^\s*[A-Za-z\s]+,\s*[\d]+,\s*[\d]+\s*$/; // Expresión regular para validar que la dirección tenga el siguiente formato 'calle o plaza, número, piso'
+            let telefono = document.getElementById("telefono");
+            let expresion_telefono = /^\d{3}(\s\d{2}){3}$/; // Expresión regular para validar que el teléfono tenga el siguiente formato '123 33 33 33'
+            let correo = document.getElementById("correo");
+            let expresion_correo = /^[^@\s]+@[^@\s]+\.[^@\s]+$/; // Expresión regular para validar que el correo tenga el siguiente formato 'ejemplo@ejemplo.com'
+            let contraseña = document.getElementById("contraseña");
+            let expresion_contraseña = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,10}$/; // Expresión regular para validar que la contraseña tenga entre 6 y 10 caracteres alfanuméricos y contar con al menos un dígito y una letra mayúscula
+            let comentario = document.getElementById("comentario");
+
+            // Validación para que el campo 'nombre' no este vacío
+            if (nombre.value === "") {
+                errores_validacion.push("El 'Nombre' es obligatorio '*'"); // Se introduce el mensaje de error en la lista
+                // En caso de que la variable 'error' esté vacía
+                if (!error) {
+                    error = nombre; // Se asigna el valor del nombre a la variable 'error'
+                }
+            }
+
+            // Validación para que el campo 'primer_apellido' no este vacío
+            if (primer_apellido.value === "") {
+                errores_validacion.push("El 'Primer apellido' es obligatorio '*'"); // Se introduce el mensaje de error en la lista
+                // En caso de que la variable 'error' esté vacía
+                if (!error) {
+                    error = primer_apellido; // Se asigna el valor del primer apellido a la variable 'error'
+                }
+            }
+
+            // Validación para que el campo 'segundo_apellido' no este vacío
+            if (segundo_apellido.value === "") {
+                errores_validacion.push("El 'Segundo apellido' es obligatorio '*'"); // Se introduce el mensaje de error en la lista
+                // En caso de que la variable 'error' esté vacía
+                if (!error) {
+                    error = segundo_apellido; // Se asigna el valor del segundo apellido a la variable 'error'
+                }
+            }
+
+            // Validación para que el campo 'direccion' sea correcto a la hora de hacer el test con la expresión regular
+            if (expresion_direccion.test(direccion.value) === false) {
+                errores_validacion.push("La 'Dirección' debe tener el siguiente formato 'calle o plaza, número, piso'"); // Se introduce el mensaje de error en la lista
+                // En caso de que la variable 'error' esté vacía
+                if (!error) {
+                    error = direccion; // Se asigna el valor de la dirección a la variable 'error'
+                }
+            }
+
+            // Validación para que el campo 'telefono' no este vacío
+            if (telefono.value === "") {
+                errores_validacion.push("El 'Teléfono' es obligatorio '*'"); // Se introduce el mensaje de error en la lista
+                // En caso de que la variable 'error' esté vacía
+                if (!error) {
+                    error = telefono; // Se asigna el valor del teléfono a la variable 'error'
+                }
+            }
+
+            // Validación para que el campo 'telefono' sea correcto a la hora de hacer el test con la expresión regular
+            if (expresion_telefono.test(telefono.value) === false) {
+                errores_validacion.push("El 'Teléfono' debe tener el siguiente formato '123 33 33 33'"); // Se introduce el mensaje de error en la lista
+                // En caso de que la variable 'error' esté vacía
+                if (!error) {
+                    error = telefono; // Se asigna el valor del teléfono a la variable 'error'
+                }
+            }
+
+            // Validación para que el campo 'correo' sea correcto a la hora de hacer el test con la expresión regular
+            if (expresion_correo.test(correo.value) === false) {
+                errores_validacion.push("El 'E-mail' debe tener el siguiente formato 'ejemplo@ejemplo.com'"); // Se introduce el mensaje de error en la lista
+                // En caso de que la variable 'error' esté vacía
+                if (!error) { 
+                    error = correo; // Se asigna el valor del correo a la variable 'error'
+                }
+            }
+
+            // Validación para que el campo 'contraseña' no este vacío
+            if (contraseña.value === "") { 
+                errores_validacion.push("La 'Contraseña' es obligatorio '*'"); // Se introduce el mensaje de error en la lista
+                // En caso de que la variable 'error' esté vacía
+                if (!error) {
+                    error = contraseña; // Se asigna el valor de la contraseña a la variable 'error'
+                }
+            }
+
+            // Validación para que el campo 'contraseña' sea correcto a la hora de hacer el test con la expresión regular
+            if ((expresion_contraseña.test(contraseña.value) === false)) {
+                errores_validacion.push("La 'Contraseña' debe 'Tener de entre 6 y 10 caracteres alfanuméricos y contar con al menos un dígito y una letra mayúscula'. "); // Se introduce el mensaje de error en la lista
+                // En caso de que la variable 'error' esté vacía
+                if (!error) {
+                    error = contraseña; // Se asigna el valor de la contraseña a la variable 'error'
+                }
+            }
+
+            // En caso de que exista algún error
+            if (errores_validacion.length > 0) {
+                alert("Los datos son incorrectos: \n - " +errores_validacion.join("\n - ")); // Salta una alerta con todos los errores de validación
+                if (error) {
+                    error.focus(); // Se pone el foco en el elemento que primero dió error y se escribió en la variable 'error'
+                }
+            } else {
+                alert("Datos enviados correctamente."); // Salta una alerta sin ningún error
+                formulario.submit(); // Se envía el formulario
+            }
+
+        }
+
+    </script>
+</head>
+<body>
+    <!-- Formulario -->
+    <form id="formulario" action="procesa.php" method="post" onsubmit="validacion(event)">
+
+        <fieldset>
+            <legend>Datos personales</legend>
+
+            <!-- Campo para el nombre -->
+            <label for="nombre">Nombre: </label>
+            <input type="text" name="nombre" id="nombre">*</input>
+
+            <!-- Campo para el primer apellido -->
+            <label for="primer_apellido">Primer apellido: </label>
+            <input type="text" name="primer_apellido" id="primer_apellido">*</input>
+
+            <!-- Campo para el segundo apellido -->
+            <label for="segundo_apellido">Segundo apellido: </label>
+            <input type="text" name="segundo_apellido" id="segundo_apellido">*</input> <br><br>
+
+            <!-- Campo para la dirección -->
+            <label for="direccion">Dirección: </label>
+            <input type="text" name="direccion" id="direccion" placeholder="calle o plaza, número y piso."> <br><br>
+
+            <!-- Campo para el teléfono -->
+            <label for="telefono">Teléfono: </label>
+            <input type="tel" name="telefono" id="telefono" placeholder="123 33 33 33">*</input> <br><br>
+
+            <!-- Campo para el correo electrónico -->
+            <label for="correo">E-mail: </label>
+            <input type="email" name="correo" id="correo" placeholder="ejemplo@ejemplo.com">*</input> <br><br>
+
+            <!-- Campo para la contraseña -->
+            <label for="contraseña">Contraseña: </label>
+            <input type="password" name="contraseña" id="contraseña">*</input> <br>
+
+            <!-- Campo se selección para el sexo -->
+            <p>Sexo <br>
+            <label><input type="radio" name="sexo" id="sexo" value="varon">Varón</label><br>
+            <label><input type="radio" name="sexo" id="sexo" value="mujer">Mujer</label>
+            </p>
+        </fieldset>
+        <br>
+        <fieldset>
+            <legend>Nivel de estudios e intereses</legend>
+
+            <!-- Campo se selección para los estudios -->
+            <p>Nivel de estudios: <br>
+            <label><input type="radio" name="estudios" id="estudios" value="certificado escolar" >  Certificado escolar</label><br>
+            <label><input type="radio" name="estudios" id="estudios" value="eso">  Graduado en E.S.O</label><br>
+            <label><input type="radio" name="estudios" id="estudios" value="bachiller - FP" >  Bachiller - Formación Profesional</label><br>
+            <label><input type="radio" name="estudios" id="estudios" value="diplomado">  Diplomado</label><br>
+            <label><input type="radio" name="estudios" id="estudios" value="licenciado">  Licenciado o Doctorado</label>
+            </p>
+
+            <!-- Checkbox para la elección de los temas para recibir artículos -->
+            <p>Recibir artículos sobre los siguientes temas <br>
+                <label><input type="checkbox" name="temas" id="temas" value="musica">  Música</label><br>
+                <label><input type="checkbox" name="temas" id="temas" value="deportes">  Deportes</label><br>
+                <label><input type="checkbox" name="temas" id="temas" value="cine">  Cine</label><br>
+                <label><input type="checkbox" name="temas" id="temas" value="libros">  Libros</label><br>
+                <label><input type="checkbox" name="temas" id="temas" value="ciencia">  Ciencia</label>
+            </p>
+        </fieldset>
+        <br>
+        <fieldset>
+            <legend>Datos sobre la revista</legend>
+
+            <!-- Lista de opciones para la selección de la frecuencia para recibir la revista -->
+            <label for="frecuencia">Frecuencia con la que se recibirá la revista: </label><br><br>
+            <select name="frecuencia" id="frecuencia">
+                <!-- Opciones -->
+                <option value="diaria">diaria</option>
+                <option value="semanal" selected>semanal</option>
+                <option value="mensual">mensual</option>
+                <option value="anual">anual</option>
+            </select>
+
+            <p>Puedes mandar tu artículo sobre cualquier tema de los que tratamos. Nosotros los valoraremos para que pueda ser publicado.</p>
+
+            <!-- Campo para la mandar un archivo 'articulo' -->
+            <label>Mandar artículo: <input type="file" name="articulo" id="articulo"></label><br><br>
+
+            <!-- Área de texto para el comentario -->
+            <label for="comentario">Si deseas mandar simplemente una opinion o comentario escríbelo aquí: </label><br>
+            <textarea name="comentario" id="comentario" cols="65" rows="7" placeholder="Escribe tu comentario..."></textarea>
+        </fieldset>
+        <br>
+        <fieldset>
+            <legend>Comenzar de nuevo</legend>
+            <p>Borrar todos los datos del formulario y volver a empezar: </p>
+
+            <!-- Botón de reseteo del formulario -->
+            <input type="reset" value="Borrar todo">
+        </fieldset>
+        <br>
+        <fieldset>
+            <legend>Enviar</legend>
+            <p>Enviar formulario por correo electrónico: Al pulsar en el botón se abrirá la página de envío de correo: en esa página pulsa en enviar: </p>
+
+            <!-- Botón de envío del formulario -->
+            <input type="submit" value="Enviar por Correo">
+        </fieldset>
+
+    </form>
+
+</body>
+</html>
