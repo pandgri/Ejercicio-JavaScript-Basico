@@ -38,11 +38,15 @@
                 let caracter_descifrado = alfabeto_elegido.indexOf(caracter) // Variable que almacena la posición en la que se encuentra el caracter que se encuentra en el texto cifrado
 
                 // Comprueba si el caracter se encuentra en el valor del alfabeto seleccionado 'lo busca en el valor del diccionario'
-                if (caracter_descifrado === -1) {
-                    descifrado += caracter; // Escribe el caracter aunque no se encuentre en el alfabeto
-                } else { 
-                    let letra_oficial = (caracter_descifrado - rotado + alfabeto_elegido.length) % alfabeto_elegido.length; // Variable que almacena el índice del caracter del alfabeto que va a servir para descifrar
+                if (caracter_descifrado !== -1) {
+                    let letra_oficial = caracter_descifrado - rotado; // Variable que almacena el índice del caracter del alfabeto que va a servir para descifrar
+                    if (letra_oficial < 0) {
+                        letra_oficial += alfabeto_elegido.length;
+                    }
                     descifrado += alfabeto_elegido[letra_oficial]; // Variable que almacena todos los caracteres del texto descifrado
+                    
+                } else { 
+                    descifrado += caracter; // Escribe el caracter aunque no se encuentre en el alfabeto
                 }
                 
             }
