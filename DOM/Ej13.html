@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    
+    <button type="button" onclick="marcar()">Marcar todos</button>
+    <button type="button" onclick="desmarcar()">Desmarcar todos</button><br><br>
+
+</body> 
+<script>
+
+    let body = document.body;
+
+    for (let i = 0; i < 100; i++) {
+        let checkbox = document.createElement("input");
+        let label = document.createElement("label");
+        let salto = document.createElement("br");
+        let random = Math.floor(Math.random() * 500);
+        label.textContent = random;
+        checkbox.type = "checkbox";
+        checkbox.value = random;
+        body.appendChild(checkbox);
+        body.appendChild(label);
+        body.appendChild(salto);
+    }
+
+    function marcar() {
+        let checkbox = document.querySelectorAll("input[type='checkbox']");
+        
+        for (let i = 0; i < checkbox.length; i++) {
+            checkbox[i].checked = true;
+        }
+
+    }
+
+    function desmarcar() {
+        let checkbox = document.querySelectorAll("input[type='checkbox']");
+
+        for (let i = 0; i < checkbox.length; i++) {
+            checkbox[i].checked = false;
+        }
+    }
+
+</script>
+</html>

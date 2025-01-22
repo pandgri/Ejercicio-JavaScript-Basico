@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Ej9</title>
+  <script>
+
+    function contador() {
+
+      let texto = document.getElementById("comentarios");
+      let numero = document.getElementById("resultado");
+  
+      let cont = texto.value.length;
+      let numeroActual = 49 - cont;
+
+      if (numeroActual >= 0) {
+        numero.innerHTML = numeroActual;
+      }
+      
+      
+    }
+
+  </script>
+</head>      
+<body>
+    <p>
+      <label for="comentarios">Ingrese sus comentarrios</label>
+    </p>
+    <p>
+      <textarea name="comentarios" id="comentarios" cols="30" rows="10" maxlength="50" onkeydown="contador()"></textarea>
+    </p>
+    <p>
+      <span>Caracteres posibles:</span>
+      <span id="resultado">50</span>
+    </p>
+  </body>
+  
+  </html>

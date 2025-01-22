@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+
+    <button type="button" onclick="casiPrimo()">Calcular números casi primos</button>
+
+</body>
+<script>
+
+
+    let body = document.body;
+    let tabla = document.createElement("table");
+    let numero = 1;
+
+    for (let i = 0; i < 100; i++) {
+        let fila = document.createElement("tr");
+
+        for (let j = 0; j < 100; j++) {
+            let casilla = document.createElement("td");
+            casilla.textContent = numero++;
+            fila.appendChild(casilla);
+        }
+
+        tabla.appendChild(fila);
+
+    }
+
+    body.appendChild(tabla); 
+
+
+    function casiPrimo() {
+
+        let casilla = document.getElementsByTagName("td");
+
+        for (let i = 0; i < casilla.length; i++) {
+            let numero = parseInt(casilla[i].textContent);
+            let contador = 0;
+
+            for (let j = 0; j < numero; j++) {
+                if (numero % j === 0) {
+                    contador++;
+                }
+            }
+
+            if (contador === 3) {
+                casilla[i].style.backgroundColor = "yellow";
+            }
+
+        }
+
+    }
+    
+
+</script>
+</html>
