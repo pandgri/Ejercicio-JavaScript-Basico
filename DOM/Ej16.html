@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ej 16</title>
+    <script type="text/javascript">
+        function genera() {
+
+            let btn = document.getElementById("genera");
+            let contenedor1 = document.getElementById("primero");
+            let contenedor2 = document.getElementById("segundo");
+            let parrafo1 = document.createElement("p");
+            let parrafo2 = document.createElement("p");
+            let random1 = Math.floor(Math.random() * 10);
+            let random2 = Math.floor(Math.random() * 10);
+            parrafo1.textContent = random1;
+            parrafo2.textContent = random2;
+            contenedor1.appendChild(parrafo1);
+            contenedor2.appendChild(parrafo2);
+
+            btn.disabled = true;
+
+        }
+        
+        function compara() {
+        
+            let numeros = document.getElementsByTagName("p");
+            let contenedor = document.getElementById("resultado");
+            let num = document.createElement("p");
+            let btn = document.getElementById("compara");
+
+            for (let i = 0; i < numeros.length; i++) {
+                if (numeros[0].textContent < numeros[1].textContent) {
+                    num.textContent = numeros[1].textContent;
+                    numeros[1].remove();
+                    contenedor.appendChild(num)
+                } else {
+                    num.textContent = numeros[0].textContent;
+                    numeros[0].remove();
+                    contenedor.appendChild(num)
+                }
+            }
+
+            btn.disabled = true;
+
+        }
+    </script>
+        
+    <style type="text/css">
+        #primero, #segundo, #resultado {width: 150px; height: 150px; border: thin solid silver; background: #F5F5F5; float: left; margin:20px; font-size: 6em; color: #333; text-align: center; padding: 5px; font-family:Arial, Helvetica, sans-serif;}
+        #primero p, #segundo p, #resultado p {margin:.2em 0;}
+        #resultado {margin-left:1.3em; border-color: black;}
+        .clear {clear:both;}
+        #compara {margin-left:11em;}
+        #genera {font-size:1.2em; margin-left:8em;}
+    </style>
+</head>   
+<body>
+        <input id="genera" type="button" value="¡¡ Genera !!" onclick="genera()"/>
+        
+        <div id="primero"></div>
+        
+        <div id="segundo"></div>
+        
+        <div class="clear"></div>
+        
+        <input id="compara" type="button" value="<< Comparar >>" onclick="compara()" />
+        
+        <div id="resultado"></div>
+</body>
+</html>
