@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Ejercicio 15 - Informaci�n sobre eventos</title>
+<style type="text/css">
+body {font-family: arial, helvetica;}
+#info {width:160px; border:thin solid silver; padding:.5em; position:fixed;}
+#info h1 {margin: 0;}
+</style>
+<script type="5ec37510910e03a7c92d3507-text/javascript">
+function muestraInformacion(mensaje) {
+	document.getElementById("info").innerHTML = '<h1>'+mensaje[0]+'</h1>';
+	for(var i=1; i<mensaje.length; i++) {
+		document.getElementById("info").innerHTML += '<p>'+mensaje[i]+'</p>';
+	}
+}
+</script>
+</head>
+<body>
+<div id="info"></div>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+<script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="5ec37510910e03a7c92d3507-|49" defer></script></body>
+</html>
+
+<script>
+
+	function muestraInformacion() {
+		let NavegadorX = event.clientX;
+		let NavegadorY = event.clientY;
+		let PaginaX = event.screenX;
+		let PaginaY = event.screenY;
+		
+		document.getElementById("info").style.backgroundColor = "lightblue";
+		document.getElementById("info").innerHTML = '<h1>Ratón</h1>';
+		document.getElementById("info").innerHTML += '<p>Navegador ['+NavegadorX+", "+NavegadorY+']</p>';
+		document.getElementById("info").innerHTML += '<p>Pagina ['+PaginaX+", " +PaginaY+']</p>';
+	}
+
+	function muestraInformacion1() {
+		let tecla = event.key;
+
+		document.getElementById("info").style.backgroundColor = "lightyellow";
+		document.getElementById("info").innerHTML = '<h1>Teclado</h1>';
+		document.getElementById("info").innerHTML += '<p>Carácter ['+ tecla +']';
+		document.getElementById("info").innerHTML += '<p>Código ['+ tecla.charCodeAt(0) +']';
+	}
+
+	document.addEventListener("mousemove", muestraInformacion);
+	document.addEventListener("keydown", muestraInformacion1);
+</script>
